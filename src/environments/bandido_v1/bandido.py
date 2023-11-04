@@ -1,5 +1,6 @@
-from src.environments.bandido_cards import cards
+from src.environments.bandido_v1.bandido_cards import cards
 import random
+
 
 class BandidoGame:
     def __init__(self, board_size=20):
@@ -89,6 +90,7 @@ class BandidoGame:
                 print("Invalid move. Please try again.")
 
             self.display()
+
 
 game = BandidoGame()
 game.place_starting_tile(level="easy")
