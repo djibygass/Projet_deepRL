@@ -1,0 +1,41 @@
+1. Description de l'état du jeu (vecteur d'encodage) pour le mode solo:
+a. Cartes sur le plateau:
+
+Comme précédemment, chaque carte peut être représentée par un vecteur de 8 éléments :
+6 pour les sorties (1 si présente, 0 sinon) et 2 pour la rotation (00, 01, 10 ou 11).
+La position de chaque carte sur le plateau peut être représentée par deux coordonnées x et y.
+Avec 69 cartes maximum, cela donne
+
+69×10=690 éléments.
+
+b. Cartes restantes dans la pile:
+
+Toujours en supposant que l'ordre des cartes dans la pile n'est pas important pour l'état du jeu,
+ nous pouvons simplement encoder le nombre de chaque type de carte restant.
+  Avec 32 configurations de cartes différentes, cela nécessite 32 nombres.
+
+c. Cartes dans la main du joueur:
+
+Si le joueur a un maximum de 3 cartes, cela nécessite
+
+3×8=24 éléments.
+
+En totalisant ces éléments, le vecteur d'encodage pour l'état du jeu aurait une taille de
+
+690+32+24=746 éléments.
+
+2. Description d'une action du jeu (vecteur d'encodage) pour le mode solo:
+
+a. Carte jouée:
+
+Toujours 8 éléments.
+b. Position sur le plateau:
+
+Deux nombres pour les coordonnées x et y où la carte est placée.
+Cela donne un total de
+8 + 2 = 10
+8+2=10 éléments pour le vecteur d'encodage d'une action.
+
+L'encodage devient donc plus concis en mode solo.
+ Ces propositions offrent une représentation compacte de l'état et des actions,
+  qui devrait faciliter l'implémentation des algorithmes d'apprentissage par renforcement.

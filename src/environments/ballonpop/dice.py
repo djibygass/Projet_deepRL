@@ -1,9 +1,7 @@
-# dice.py
 import random
 
 
 class Dice:
-    # A die has six sides, with each side showing a color and a shape
     die_faces = [
         ("Red", "Star"),
         ("Red", "Moon"),
@@ -13,16 +11,19 @@ class Dice:
         ("Yellow", "Star")
     ]
 
-    @staticmethod
-    def roll(number_of_dice=1):
-        # Roll the specified number of dice and return the results
-        return [random.choice(Dice.die_faces) for _ in range(number_of_dice)]
+    def __init__(self):
+        self.current_side = None
+
+    def roll(self):
+        self.current_side = random.choice(Dice.die_faces)
+        return self.current_side
 
 
-# Example usage in the main game loop or testing
+# Main game loop or testing
 if __name__ == "__main__":
-    # Simulate rolling the dice three times
-    for _ in range(1):
-        results = Dice.roll(3)
-        for color, shape in results:
-            print(f"Rolled a {color} balloon with a {shape}.")
+    dice_objects = [Dice() for _ in range(3)]  # Create a list of three Dice objects
+    for _ in range(1):  # Suppose we roll the dice once per round
+        roll_results = [dice.roll() for dice in dice_objects]
+        for result in roll_results:
+            print(f"Rolled a {result[0]} balloon with a {result[1]}.")
+

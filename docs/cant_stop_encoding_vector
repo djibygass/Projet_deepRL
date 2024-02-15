@@ -1,0 +1,18 @@
+Can't Stop
+State Encoding for RL:
+
+Board State: Flatten the board state into a single vector.
+ Each cell state can be one-hot encoded, resulting in a three-dimensional vector per cell
+  (i.e., [1, 0, 0], [0, 1, 0], or [0, 0, 1]). Concatenate these vectors for all cells.
+
+Dice Values: Use a one-hot encoding for each dice value.
+ Since each dice can take a value from 1-6, this results in a six-dimensional vector for each dice.
+  Concatenate these vectors for all four dice.
+
+Current Player: A simple binary value indicating the current player.
+
+Action Encoding for RL:
+
+Actions in "Can't Stop" involve selecting a pair of dice combinations.
+ One way to encode this is to assign a unique ID to each possible pair combination.
+  This means the output layer of your neural network would have as many neurons as there are possible pair combinations.<<<
