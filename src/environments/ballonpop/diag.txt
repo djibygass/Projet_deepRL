@@ -1,0 +1,58 @@
+Class Diagram for "Balloon Pop!"
+
+Class Dice
+----------
++ die_faces: List[Tuple[str, str]]
+- current_side: Tuple[str, str]
+----------
++ roll() -> Tuple[str, str]
+
+Class Scoresheet
+----------------
+- columns: Dict[str, List[Union[int, str]]]
+- current_positions: Dict[str, int]
+- breaks: int
+----------
++ record_roll(dice_rolled: List[Tuple[str, str]]) -> List[str]
++ get_current_score() -> int
++ check_for_breaks() -> bool
+
+Class Player
+------------
+- name: str
+- scoresheet: Scoresheet
+- dice: List[Dice]
+- rerolls_remaining: int
+----------
++ take_turn(game_logic: GameLogic) -> None
++ choose_dice_to_keep(rolled_dice: List[Tuple[str, str]]) -> List[int]
++ roll_dice() -> List[Tuple[str, str]]
++ reroll(dice_to_keep_indices: List[int]) -> None
+
+Class GameLogic
+---------------
+- players: List[Player]
+- current_player_index: int
+- max_dice: int
+----------
++ next_player() -> Player
++ initial_roll() -> List[Tuple[str, str]]
++ handle_rerolls(dice_to_keep: List[int], rolled_dice: List[Tuple[str, str]]) -> None
++ record_and_score(roll_results: List[Tuple[str, str]]) -> int
++ check_for_end_of_game() -> Optional[Dict[str, int]]
+
+Class GameInterface
+-------------------
+- game: GameLogic
+----------
++ display_board() -> None
++ get_player_input() -> Any
++ show_end_game_results(final_scores: Dict[str, int]) -> None
+
+Class Game (Main entry point)
+-----------------------------
+- game_logic: GameLogic
+- game_interface: GameInterface
+----------
++ setup_game(players: List[str]) -> None
++ start_game() -> None
